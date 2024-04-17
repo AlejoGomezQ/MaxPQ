@@ -45,7 +45,17 @@ public class MaxPQ {
 
 
     private void sink(int k) {
-
+        while(2 * k <= n) {
+            int j = 2 * k;
+            if(j < n && heap[j] < heap[j + 1]) {
+                j++;
+            }
+            if(heap[k] >= heap[j]) {
+                break;
+            }
+            swap(k, j);
+            k = j;
+        }
     }
 
     public int deleteMax() {
@@ -82,6 +92,9 @@ public class MaxPQ {
         pq.insert(1);
         pq.insert(3);
         System.out.println("MaxPQ size: " + pq.size());
+        pq.print();
+        System.out.println("-----");
+        pq.deleteMax();
         pq.print();
     }
 }
